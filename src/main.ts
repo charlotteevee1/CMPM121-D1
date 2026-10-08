@@ -3,12 +3,16 @@
 // @deno-types="./asset-url.d.ts"
 import tileUrl from "./assets/tile.svg?no-inline";
 
+// Simple counter
+let count = 0;
+
 const app = document.querySelector<HTMLElement>("#app")!;
 
 const heading = document.createElement("h1");
 heading.textContent = "D1 project";
 
 const image = document.createElement("img");
+image.id = "buttonImg";
 image.src = tileUrl;
 image.alt = "A teal tile with a cream circle";
 image.width = 96;
@@ -17,4 +21,15 @@ image.height = 96;
 const message = document.createElement("p");
 message.textContent = "Your project starts here.";
 
-app.append(heading, image, message);
+const counter = document.createElement("p");
+counter.textContent = "Trees planted: 0";
+
+app.append(heading, image, message, counter);
+
+// Add click handler
+const button = document.getElementById("buttonImg")!;
+
+button.addEventListener("click", () => {
+  count += 1;
+  counter.textContent = `Trees planted: ${count.toString()}`;
+});
