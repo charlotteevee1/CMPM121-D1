@@ -3,13 +3,13 @@
 // @deno-types="./asset-url.d.ts"
 import tileUrl from "./assets/tile.svg?no-inline";
 
-function increase(count, multiplier) {
+function increase(count: number, multiplier: number) {
   return count += 1 * multiplier;
 }
 
 // Simple counter
 let count = 0;
-let multiplier = 1;
+const multiplier = 1;
 
 const app = document.querySelector<HTMLElement>("#app")!;
 
