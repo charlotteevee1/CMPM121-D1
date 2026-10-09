@@ -3,8 +3,13 @@
 // @deno-types="./asset-url.d.ts"
 import tileUrl from "./assets/tile.svg?no-inline";
 
+function increase(count, multiplier) {
+  return count += 1 * multiplier;
+}
+
 // Simple counter
 let count = 0;
+let multiplier = 1;
 
 const app = document.querySelector<HTMLElement>("#app")!;
 
@@ -30,6 +35,18 @@ app.append(heading, image, message, counter);
 const button = document.getElementById("buttonImg")!;
 
 button.addEventListener("click", () => {
-  count += 1;
+  count = increase(count, multiplier);
   counter.textContent = `Trees planted: ${count.toString()}`;
 });
+
+function startTimer() {
+  setInterval(() => {
+    count = increase(count, multiplier);
+    counter.textContent = `Trees planted: ${count.toString()}`;
+    console.log("timer");
+  }, 1000);
+}
+
+startTimer();
+
+// Put the update text into a function instead of copy and pasted
