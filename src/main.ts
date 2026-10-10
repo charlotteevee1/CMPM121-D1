@@ -30,36 +30,39 @@ shop.id = "shop";
 // Make sure all visual elements are listed into here
 app.append(heading, mainButton, message, counter, shop);
 
+// Event Listeners
+mainButton.addEventListener("click", () => {
+  count += manualAmount;
+  counter.textContent = `Trees planted: ${count.toString()}`;
+});
+
+// Variables
+let count = 0;
+let autoAmount = 0;
+let manualAmount = 1;
+
 // Timer
 function startTimer() {
   setInterval(() => {
-    count = increase(count, multiplier);
+    count = increase(count, autoAmount);
   }, 1000);
 }
 
 startTimer();
 
-// Variables
-let count = 0;
-let multiplier = 1;
-
-// Event Listeners
-mainButton.addEventListener("click", () => {
-  count = increase(count, multiplier);
-});
-
 // Functions
-function increase(count: number, multiplier: number) {
-  count += 1 * multiplier;
+function increase(count: number, autoAmount: number) {
+  count += autoAmount;
   counter.textContent = `Trees planted: ${count.toString()}`;
   return count;
 }
 
-// Buying an upgrade will add to the current multiplier
+// Buying an upgrade will add to the current autoAmount
 function createUpgrade(
   buttonText: string,
-  newMultiplier: number,
+  newAmount: number,
   cost: number,
+  isAutoUpgrade: boolean,
 ) {
   const upgrade = document.createElement("p");
   upgrade.textContent = buttonText;
@@ -67,13 +70,21 @@ function createUpgrade(
 
   upgrade.addEventListener("click", () => {
     if (cost <= count) {
-      multiplier += newMultiplier;
       count -= cost;
-      console.log(multiplier);
+
+      if (isAutoUpgrade == true) autoAmount += newAmount;
+      else manualAmount += newAmount;
+
+      counter.textContent = `Trees planted: ${count.toString()}`;
+      console.log("Auto " + autoAmount + " Manual " + manualAmount);
     } else console.log("Not enough cash!");
   });
 }
 
-createUpgrade("upgrade! x2. cost 20", 2, 20);
+createUpgrade("upgrade! +1 auto, cost 10", 1, 10, true);
 
-createUpgrade("upgrade! x100 cost 100", 100, 100);
+createUpgrade("upgrade! +2 auto, cost 20", 2, 20, true);
+
+createUpgrade("upgrade! +10 auto, cost 100", 10, 100, true);
+
+createUpgrade("upgrade! +5 manual, cost 30", 5, 30, false);
