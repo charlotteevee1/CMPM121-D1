@@ -1,0 +1,29 @@
+body {
+  background: rgb(188, 207, 187);
+  /* background: rgb(165, 180, 162); */
+}
+
+h1,
+p {
+  color: rgb(96, 62, 61);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#buttonImg {
+  position: relative;
+  left: 300px;
+  top: 20px;
+}
+
+#shop p {
+  /* color: rgb(48, 33, 33); */
+  color: rgb(74, 48, 48);
+  padding: 10px;
+  border-style: groove;
+  border-radius: 8px;
+  /* border-color: rgb(141, 101, 101); */
+  border-color: rgb(157, 122, 122);
+
+  /* background-color: rgb(140, 124, 124); */
+  background-color: rgb(155, 143, 138);
+}

@@ -4,18 +4,19 @@
 
 // Creating visual elements
 import tileUrl from "./assets/tile.svg?no-inline";
+import "./styles.css";
 
 const app = document.querySelector<HTMLElement>("#app")!;
 
 const heading = document.createElement("h1");
 heading.textContent = "D1 project";
 
-const image = document.createElement("img");
-image.id = "buttonImg";
-image.src = tileUrl;
-image.alt = "A teal tile with a cream circle";
-image.width = 96;
-image.height = 96;
+const mainButton = document.createElement("img");
+mainButton.id = "mainButton";
+mainButton.src = tileUrl;
+mainButton.alt = "A teal tile with a cream circle";
+mainButton.width = 96;
+mainButton.height = 96;
 
 const message = document.createElement("p");
 message.textContent = "Your project starts here.";
@@ -23,37 +24,11 @@ message.textContent = "Your project starts here.";
 const counter = document.createElement("p");
 counter.textContent = "Trees planted: 0";
 
-const upgrade1 = document.createElement("p");
-upgrade1.textContent = "Click here to increase multiplier to 2x";
-upgrade1.id = "upgrade1";
+const shop = document.createElement("div");
+shop.id = "shop";
 
 // Make sure all visual elements are listed into here
-app.append(heading, image, message, counter, upgrade1);
-
-// Add click handler
-const button = document.getElementById("buttonImg")!;
-const upgrade1Button = document.getElementById("upgrade1")!;
-
-// Variables
-let count = 0;
-let multiplier = 1;
-
-// Functions
-function increase(count: number, multiplier: number) {
-  count += 1 * multiplier;
-  counter.textContent = `Trees planted: ${count.toString()}`;
-  return count;
-}
-
-// Event Listeners
-button.addEventListener("click", () => {
-  count = increase(count, multiplier);
-});
-
-// Testing a very basic upgrade
-upgrade1Button.addEventListener("click", () => {
-  multiplier = 2;
-});
+app.append(heading, mainButton, message, counter, shop);
 
 // Timer
 function startTimer() {
@@ -63,3 +38,42 @@ function startTimer() {
 }
 
 startTimer();
+
+// Variables
+let count = 0;
+let multiplier = 1;
+
+// Event Listeners
+mainButton.addEventListener("click", () => {
+  count = increase(count, multiplier);
+});
+
+// Functions
+function increase(count: number, multiplier: number) {
+  count += 1 * multiplier;
+  counter.textContent = `Trees planted: ${count.toString()}`;
+  return count;
+}
+
+// Buying an upgrade will add to the current multiplier
+function createUpgrade(
+  buttonText: string,
+  newMultiplier: number,
+  cost: number,
+) {
+  const upgrade = document.createElement("p");
+  upgrade.textContent = buttonText;
+  shop.append(upgrade);
+
+  upgrade.addEventListener("click", () => {
+    if (cost <= count) {
+      multiplier += newMultiplier;
+      count -= cost;
+      console.log(multiplier);
+    } else console.log("Not enough cash!");
+  });
+}
+
+createUpgrade("upgrade! x2. cost 20", 2, 20);
+
+createUpgrade("upgrade! x100 cost 100", 100, 100);
