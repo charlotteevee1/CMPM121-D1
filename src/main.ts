@@ -9,7 +9,7 @@ import "./styles.css";
 const app = document.querySelector<HTMLElement>("#app")!;
 
 const heading = document.createElement("h1");
-heading.textContent = "D1 project";
+heading.textContent = "Plant trees";
 
 const mainButton = document.createElement("img");
 mainButton.id = "mainButton";
@@ -18,17 +18,29 @@ mainButton.alt = "A teal tile with a cream circle";
 mainButton.width = 96;
 mainButton.height = 96;
 
-const message = document.createElement("p");
-message.textContent = "Your project starts here.";
-
-const counter = document.createElement("p");
+const counter = document.createElement("h3");
 counter.textContent = "Trees planted: 0";
+
+const message = document.createElement("p");
+message.textContent = "Keep clicking! Nature appreciates your efforts";
+
+const shopText = document.createElement("h1");
+shopText.textContent = "Shop";
 
 const shop = document.createElement("div");
 shop.id = "shop";
 
+const forestWindow = document.createElement("div");
+forestWindow.id = "forestWindow";
+
+const clickWindow = document.createElement("div");
+clickWindow.id = "clickWindow";
+
 // Make sure all visual elements are listed into here
-app.append(heading, mainButton, message, counter, shop);
+app.append(clickWindow, forestWindow, shop);
+shop.append(shopText);
+forestWindow.append();
+clickWindow.append(heading, mainButton, counter, message);
 
 // Event Listeners
 mainButton.addEventListener("click", () => {

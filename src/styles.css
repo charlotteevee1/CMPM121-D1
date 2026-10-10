@@ -1,12 +1,21 @@
 body {
-  /* background: #b5dfc5; */
-  background: #c2e8d1;
+  background: #bfc79e;
 }
 
 h1,
+h2,
+h3,
 p {
-  color: rgb(103, 57, 45);
+  color: rgb(72, 47, 41);
   font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#app {
+  display: flex;
+  gap: 10px;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
 }
 
 #buttonImg {
@@ -15,21 +24,44 @@ p {
   top: 20px;
 }
 
+div {
+  text-align: center;
+  border-style: groove;
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 250px;
+  width: 500px;
+  min-height: 300px;
+  height: 450px;
+}
+#clickWindow {
+  background-color: #f0e4c0;
+  border-color: #b5a67b;
+}
+
+#clickWindow p,
+#clickWindow h1,
+#clickWindow h2,
+#clickWindow h3 {
+  color: rgb(113, 86, 72);
+}
+
+#forestWindow {
+  background-color: #efede4;
+  border-color: #787c69;
+  width: 700px;
+}
+
+#shop {
+  background-color: #6d754e;
+  border-color: #78834d;
+}
+
 #shop p {
-  color: rgb(85, 58, 58);
+  color: #E5D1B6;
   padding: 10px;
   border-style: groove;
   border-radius: 8px;
   border-color: rgb(157, 122, 122);
-
-  background-color: #bdb29e;
-}
-
-div {
-  width: 300px;
-  height: 300px;
-  /*
-  position: relative;
-  left: 500px;
-  */
+  background-color: #9a7f69;
 }
