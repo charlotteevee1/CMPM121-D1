@@ -4,6 +4,7 @@
 
 // Creating visual elements
 import tileUrl from "./assets/tile.svg?no-inline";
+import leafeonUrl from "./assets/leafeon.jpg?no-inline";
 import "./styles.css";
 
 const app = document.querySelector<HTMLElement>("#app")!;
@@ -17,6 +18,12 @@ mainButton.src = tileUrl;
 mainButton.alt = "A teal tile with a cream circle";
 mainButton.width = 96;
 mainButton.height = 96;
+
+// Placeholder image
+const leafeon = document.createElement("img");
+leafeon.id = "leafeon";
+leafeon.src = leafeonUrl;
+leafeon.alt = "A cute little leafeon!";
 
 const counter = document.createElement("h3");
 counter.textContent = "Trees planted: 0";
@@ -39,7 +46,7 @@ clickWindow.id = "clickWindow";
 // Make sure all visual elements are listed into here
 app.append(clickWindow, forestWindow, shop);
 shop.append(shopText);
-forestWindow.append();
+forestWindow.append(leafeon);
 clickWindow.append(heading, mainButton, counter, message);
 
 // Event Listeners
@@ -100,3 +107,9 @@ createUpgrade("upgrade! +2 auto, cost 20", 2, 20, true);
 createUpgrade("upgrade! +10 auto, cost 100", 10, 100, true);
 
 createUpgrade("upgrade! +5 manual, cost 30", 5, 30, false);
+
+createUpgrade("upgrade! +100 manual, cost 50", 100, 50, false);
+
+createUpgrade("upgrade! +200 manual, cost 80", 200, 80, false);
+
+createUpgrade("upgrade! +200 manual, cost 80", 200, 80, false);
