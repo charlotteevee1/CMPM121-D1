@@ -31,6 +31,10 @@ counter.textContent = "Trees planted: 0";
 const message = document.createElement("p");
 message.textContent = "Keep clicking! Nature appreciates your efforts";
 
+//number of upgrade counter
+const upgradeCounter = document.createElement("h3");
+upgradeCounter.textContent = "# Upgrades Bought: 0";
+
 const shopText = document.createElement("h1");
 shopText.textContent = "Shop";
 
@@ -47,7 +51,7 @@ clickWindow.id = "clickWindow";
 app.append(clickWindow, forestWindow, shop);
 shop.append(shopText);
 forestWindow.append(leafeon);
-clickWindow.append(heading, mainButton, counter, message);
+clickWindow.append(heading, mainButton, counter, message, upgradeCounter);
 
 // Event Listeners
 mainButton.addEventListener("click", () => {
@@ -57,6 +61,7 @@ mainButton.addEventListener("click", () => {
 
 // Variables
 let count = 0;
+let upgradeCount = 0;
 let autoAmount = 0;
 let manualAmount = 1;
 
@@ -90,11 +95,14 @@ function createUpgrade(
   upgrade.addEventListener("click", () => {
     if (cost <= count) {
       count -= cost;
+      upgradeCount++;
 
       if (isAutoUpgrade == true) autoAmount += newAmount;
       else manualAmount += newAmount;
 
       counter.textContent = `Trees planted: ${count.toString()}`;
+      upgradeCounter.textContent =
+        `# upgrades Bought: ${upgradeCount.toString()}`;
       console.log("Auto " + autoAmount + " Manual " + manualAmount);
     } else console.log("Not enough cash!");
   });
