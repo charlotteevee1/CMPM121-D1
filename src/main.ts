@@ -102,7 +102,7 @@ function createUpgrade(
 
       counter.textContent = `Trees planted: ${count.toString()}`;
       upgradeCounter.textContent =
-        `# upgrades Bought: ${upgradeCount.toString()}`;
+        `# Upgrades Bought: ${upgradeCount.toString()}`;
       console.log("Auto " + autoAmount + " Manual " + manualAmount);
     } else console.log("Not enough cash!");
   });
