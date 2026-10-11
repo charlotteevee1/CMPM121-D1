@@ -32,8 +32,8 @@ const message = document.createElement("p");
 message.textContent = "Keep clicking! Nature appreciates your efforts";
 
 //number of upgrade counter
-const upgradeCounter = document.createElement("h3");
-upgradeCounter.textContent = "# Upgrades Bought: 0";
+const upgradeCounter = document.createElement("h5");
+upgradeCounter.textContent = "Total Upgrades Bought: 0";
 
 const shopText = document.createElement("h1");
 shopText.textContent = "Shop";
@@ -49,9 +49,9 @@ clickWindow.id = "clickWindow";
 
 // Make sure all visual elements are listed into here
 app.append(clickWindow, forestWindow, shop);
-shop.append(shopText);
+shop.append(shopText, upgradeCounter);
 forestWindow.append(leafeon);
-clickWindow.append(heading, mainButton, counter, message, upgradeCounter);
+clickWindow.append(heading, mainButton, counter, message);
 
 // Event Listeners
 mainButton.addEventListener("click", () => {
