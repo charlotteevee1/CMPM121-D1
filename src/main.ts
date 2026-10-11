@@ -10,7 +10,7 @@ import "./styles.css";
 const app = document.querySelector<HTMLElement>("#app")!;
 
 const heading = document.createElement("h1");
-heading.textContent = "Plant trees";
+heading.textContent = "Plant Trees";
 
 const mainButton = document.createElement("img");
 mainButton.id = "mainButton";
@@ -102,7 +102,7 @@ function createUpgrade(
 
       counter.textContent = `Trees planted: ${count.toString()}`;
       upgradeCounter.textContent =
-        `# Upgrades Bought: ${upgradeCount.toString()}`;
+        `Total Upgrades Bought: ${upgradeCount.toString()}`;
       console.log("Auto " + autoAmount + " Manual " + manualAmount);
     } else console.log("Not enough cash!");
   });
