@@ -33,6 +33,7 @@ message.textContent = "Keep clicking! Nature appreciates your efforts";
 
 //number of upgrade counter
 const upgradeCounter = document.createElement("h5");
+upgradeCounter.id = "upgradeCounter";
 upgradeCounter.textContent = "Total Upgrades Bought: 0";
 
 const shopText = document.createElement("h1");
@@ -108,16 +109,28 @@ function createUpgrade(
   });
 }
 
-createUpgrade("upgrade! +1 auto, cost 10", 1, 10, true);
+const autoUpgradeText = document.createElement("h4");
+autoUpgradeText.textContent = "- Auto Upgrades -";
+shop.append(autoUpgradeText);
 
-createUpgrade("upgrade! +2 auto, cost 20", 2, 20, true);
+createUpgrade("+1 auto - $10", 1, 10, true);
 
-createUpgrade("upgrade! +10 auto, cost 100", 10, 100, true);
+createUpgrade("+2 auto - $20", 2, 20, true);
 
-createUpgrade("upgrade! +5 manual, cost 30", 5, 30, false);
+createUpgrade("+10 auto - $100", 10, 100, true);
 
-createUpgrade("upgrade! +100 manual, cost 50", 100, 50, false);
+const manualUpgradeText = document.createElement("h4");
+manualUpgradeText.textContent = "- Manual Upgrades -";
+shop.append(manualUpgradeText);
 
-createUpgrade("upgrade! +200 manual, cost 80", 200, 80, false);
+createUpgrade("+5 manual - $30", 5, 30, false);
 
-createUpgrade("upgrade! +200 manual, cost 80", 200, 80, false);
+createUpgrade("+100 manual - $50", 100, 50, false);
+
+createUpgrade("+200 manual - $80", 200, 80, false);
+
+createUpgrade("+200 manual - $80", 200, 80, false);
+
+const environmentUpgradeText = document.createElement("h4");
+environmentUpgradeText.textContent = "- Environment Upgrades -";
+shop.append(environmentUpgradeText);

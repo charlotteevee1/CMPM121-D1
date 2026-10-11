@@ -69,8 +69,6 @@ div {
   border-color: #787c69;
   flex: 0 0 300px;
   height: 600px;
-  /* Consider changing order back to original? */
-  order: 3;
 }
 
 #shop {
@@ -80,10 +78,14 @@ div {
 
 #shop p {
   color: #E5D1B6;
-  padding: 10px;
+  padding: 8px;
   border-style: groove;
   border-radius: 8px;
   border-color: rgb(157, 122, 122);
   background-color: #9a7f69;
-  font-size: 5cqw;
+  font-size: 6cqw;
+}
+
+#upgradeCounter {
+  color: #434832;
 }
