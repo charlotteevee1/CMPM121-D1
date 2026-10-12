@@ -92,7 +92,7 @@ function createUpgrade(
 ) {
   const upgrade = document.createElement("p");
   upgrade.style.cursor = "pointer";
-  upgrade.textContent = buttonText;
+  upgrade.textContent = `${buttonText} - $${cost}`;
   shop.append(upgrade);
 
   upgrade.addEventListener("click", () => {
@@ -102,6 +102,10 @@ function createUpgrade(
 
       if (isAutoUpgrade == true) autoAmount += newAmount;
       else manualAmount += newAmount;
+
+      //Doubling the price of upgrades
+      cost = cost * 2;
+      upgrade.textContent = `${buttonText} - $${cost}`;
 
       counter.textContent = `Trees planted: ${count.toString()}`;
       upgradeCounter.textContent =
@@ -115,23 +119,23 @@ const autoUpgradeText = document.createElement("h2");
 autoUpgradeText.textContent = "-Auto Upgrades-";
 shop.append(autoUpgradeText);
 
-createUpgrade("+1 auto - $10", 1, 10, true);
+createUpgrade("+1 auto", 1, 10, true);
 
-createUpgrade("+2 auto - $20", 2, 20, true);
+createUpgrade("+2 auto", 2, 20, true);
 
-createUpgrade("+10 auto - $100", 10, 100, true);
+createUpgrade("+10 auto", 10, 100, true);
 
 const manualUpgradeText = document.createElement("h2");
 manualUpgradeText.textContent = "-Manual Upgrades-";
 shop.append(manualUpgradeText);
 
-createUpgrade("+5 manual - $30", 5, 30, false);
+createUpgrade("+5 manual", 5, 30, false);
 
-createUpgrade("+100 manual - $50", 100, 50, false);
+createUpgrade("+100 manual", 100, 50, false);
 
-createUpgrade("+200 manual - $80", 200, 80, false);
+createUpgrade("+200 manual", 200, 80, false);
 
-createUpgrade("+200 manual - $80", 200, 80, false);
+createUpgrade("+200 manual", 200, 80, false);
 
 const environmentUpgradeText = document.createElement("h2");
 environmentUpgradeText.textContent = "-Environment Upgrades-";
