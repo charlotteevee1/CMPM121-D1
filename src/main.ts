@@ -13,6 +13,7 @@ const heading = document.createElement("h1");
 heading.textContent = "Plant Trees";
 
 const mainButton = document.createElement("img");
+mainButton.style.cursor = "pointer";
 mainButton.id = "mainButton";
 mainButton.src = tileUrl;
 mainButton.alt = "A teal tile with a cream circle";
@@ -90,6 +91,7 @@ function createUpgrade(
   isAutoUpgrade: boolean,
 ) {
   const upgrade = document.createElement("p");
+  upgrade.style.cursor = "pointer";
   upgrade.textContent = buttonText;
   shop.append(upgrade);
 
