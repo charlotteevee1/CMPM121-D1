@@ -51,6 +51,7 @@ div {
   padding: 20px;
 
   min-width: 250px;
+  max-width: 900px;
   overflow-y: auto;
   max-height: 80vh;
 }
@@ -78,9 +79,9 @@ div {
 #forestWindow {
   background-color: #efede4;
   border-color: #787c69;
-  flex: 1 1 600px;
+  flex: 0 0 auto;
   max-width: 800px;
-  aspect-ratio: 800/1000;
+  aspect-ratio: 800/1200;
 }
 
 #shop {
