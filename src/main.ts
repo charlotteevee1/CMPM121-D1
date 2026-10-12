@@ -25,14 +25,14 @@ leafeon.id = "leafeon";
 leafeon.src = leafeonUrl;
 leafeon.alt = "A cute little leafeon!";
 
-const counter = document.createElement("h3");
+const counter = document.createElement("h2");
 counter.textContent = "Trees planted: 0";
 
 const message = document.createElement("p");
 message.textContent = "Keep clicking! Nature appreciates your efforts";
 
 //number of upgrade counter
-const upgradeCounter = document.createElement("h5");
+const upgradeCounter = document.createElement("h3");
 upgradeCounter.id = "upgradeCounter";
 upgradeCounter.textContent = "Total Upgrades Bought: 0";
 
@@ -109,8 +109,8 @@ function createUpgrade(
   });
 }
 
-const autoUpgradeText = document.createElement("h4");
-autoUpgradeText.textContent = "- Auto Upgrades -";
+const autoUpgradeText = document.createElement("h2");
+autoUpgradeText.textContent = "-Auto Upgrades-";
 shop.append(autoUpgradeText);
 
 createUpgrade("+1 auto - $10", 1, 10, true);
@@ -119,8 +119,8 @@ createUpgrade("+2 auto - $20", 2, 20, true);
 
 createUpgrade("+10 auto - $100", 10, 100, true);
 
-const manualUpgradeText = document.createElement("h4");
-manualUpgradeText.textContent = "- Manual Upgrades -";
+const manualUpgradeText = document.createElement("h2");
+manualUpgradeText.textContent = "-Manual Upgrades-";
 shop.append(manualUpgradeText);
 
 createUpgrade("+5 manual - $30", 5, 30, false);
@@ -131,6 +131,6 @@ createUpgrade("+200 manual - $80", 200, 80, false);
 
 createUpgrade("+200 manual - $80", 200, 80, false);
 
-const environmentUpgradeText = document.createElement("h4");
-environmentUpgradeText.textContent = "- Environment Upgrades -";
+const environmentUpgradeText = document.createElement("h2");
+environmentUpgradeText.textContent = "-Environment Upgrades-";
 shop.append(environmentUpgradeText);

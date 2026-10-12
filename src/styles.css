@@ -6,15 +6,24 @@ h1,
 h2,
 h3,
 h4,
-h5,
 p {
   color: rgb(72, 47, 41);
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 24px;
+}
+
 #app {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   height: 100vh;
   flex-wrap: wrap;
   align-items: center;
@@ -24,7 +33,8 @@ p {
 
 #mainButton {
   position: relative;
-  margin-top: 45px;
+  margin-top: 72px;
+  scale: 1.6;
 }
 
 #leafeon {
@@ -36,10 +46,11 @@ p {
 div {
   text-align: center;
   border-style: groove;
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 12px;
+  border-width: 5px;
+  padding: 20px;
 
-  min-width: 150px;
+  min-width: 250px;
   overflow-y: auto;
   max-height: 80vh;
 }
@@ -67,8 +78,9 @@ div {
 #forestWindow {
   background-color: #efede4;
   border-color: #787c69;
-  flex: 0 0 300px;
-  height: 600px;
+  flex: 1 1 600px;
+  max-width: 800px;
+  aspect-ratio: 800/1000;
 }
 
 #shop {
@@ -78,12 +90,13 @@ div {
 
 #shop p {
   color: #E5D1B6;
-  padding: 8px;
+  padding: 12px;
   border-style: groove;
-  border-radius: 8px;
+  border-radius: 12px;
+  border-width: 5px;
   border-color: rgb(157, 122, 122);
   background-color: #9a7f69;
-  font-size: 6cqw;
+  font-size: clamp(8px, 6cqw, 30px);
 }
 
 #upgradeCounter {
