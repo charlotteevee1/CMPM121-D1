@@ -29,11 +29,17 @@ leafeon.alt = "A cute little leafeon!";
 const counter = document.createElement("h2");
 counter.textContent = "Trees planted: 0";
 
+const manualCounter = document.createElement("p");
+manualCounter.textContent = "Manual counter: 1";
+
+const autoCounter = document.createElement("p");
+autoCounter.textContent = "Auto counter: 0";
+
 const message = document.createElement("p");
 message.textContent = "Keep clicking! Nature appreciates your efforts";
 
 //number of upgrade counter
-const upgradeCounter = document.createElement("h3");
+const upgradeCounter = document.createElement("h4");
 upgradeCounter.id = "upgradeCounter";
 upgradeCounter.textContent = "Total Upgrades Bought: 0";
 
@@ -53,7 +59,14 @@ clickWindow.id = "clickWindow";
 app.append(clickWindow, forestWindow, shop);
 shop.append(shopText, upgradeCounter);
 forestWindow.append(leafeon);
-clickWindow.append(heading, mainButton, counter, message);
+clickWindow.append(
+  heading,
+  mainButton,
+  counter,
+  manualCounter,
+  autoCounter,
+  message,
+);
 
 // Event Listeners
 mainButton.addEventListener("click", () => {
@@ -110,6 +123,9 @@ function createUpgrade(
       counter.textContent = `Trees planted: ${count.toString()}`;
       upgradeCounter.textContent =
         `Total Upgrades Bought: ${upgradeCount.toString()}`;
+      manualCounter.textContent = `Manual counter: ${manualAmount.toString()}`;
+      autoCounter.textContent = `Auto counter: ${autoAmount.toString()}`;
+
       console.log("Auto " + autoAmount + " Manual " + manualAmount);
     } else console.log("Not enough cash!");
   });
