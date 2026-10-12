@@ -74,6 +74,16 @@ mainButton.addEventListener("click", () => {
   counter.textContent = `Trees planted: ${count.toString()}`;
 });
 
+// Make button glow when hovered
+mainButton.addEventListener("mouseover", () => {
+  mainButton.style.filter = "brightness(150%)";
+});
+
+// Make button stop glowing when leaving
+mainButton.addEventListener("mouseleave", () => {
+  mainButton.style.filter = "brightness(100%)";
+});
+
 // Variables
 let count = 0;
 let upgradeCount = 0;
@@ -108,6 +118,18 @@ function createUpgrade(
   upgrade.textContent = `${buttonText} - $${cost}`;
   shop.append(upgrade);
 
+  // Make button glow when hovered
+  upgrade.addEventListener("mouseover", () => {
+    if (cost <= count) {
+      upgrade.style.filter = "brightness(150%)";
+    }
+  });
+
+  // Make button stop glowing when leaving
+  upgrade.addEventListener("mouseleave", () => {
+    upgrade.style.filter = "brightness(100%)";
+  });
+
   upgrade.addEventListener("click", () => {
     if (cost <= count) {
       count -= cost;
@@ -127,7 +149,9 @@ function createUpgrade(
       autoCounter.textContent = `Auto counter: ${autoAmount.toString()}`;
 
       console.log("Auto " + autoAmount + " Manual " + manualAmount);
-    } else console.log("Not enough cash!");
+    } else {
+      console.log("Not enough cash!");
+    }
   });
 }
 
