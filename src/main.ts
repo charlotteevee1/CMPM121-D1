@@ -3,7 +3,7 @@
 // @deno-types="./asset-url.d.ts"
 
 // Creating visual elements
-import tileUrl from "./assets/tile.svg?no-inline";
+import tileUrl from "./assets/tile.png?no-inline";
 import "./styles.css";
 
 const app = document.querySelector<HTMLElement>("#app")!;
@@ -120,7 +120,7 @@ mainButton.addEventListener("click", () => {
 
 // Make button glow when hovered
 mainButton.addEventListener("mouseover", () => {
-  mainButton.style.filter = "brightness(150%)";
+  mainButton.style.filter = "brightness(120%)";
 });
 
 // Make button stop glowing when leaving
