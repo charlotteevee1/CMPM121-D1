@@ -3,7 +3,7 @@
 // @deno-types="./asset-url.d.ts"
 
 // Creating visual elements
-// import tileUrl from "./assets/tile.svg?no-inline";
+//import tileUrl from "./assets/tile.svg?no-inline";
 import plant from "./assets/plant.PNG?no-inline";
 import "./styles.css";
 
@@ -18,46 +18,91 @@ type ForestLayer = {
 };
 
 const dayLayers: ForestLayer[] = [
-  { src: "./forest/daySky.PNG", type: "background" },
+  { src: "src/assets/forest/daySky.PNG", type: "background" },
 
   {
-    src: "./forest/tree5.PNG",
+    src: "src/assets/forest/tree5.PNG",
     type: "upgrade",
     name: "tree5",
     unlockAt: 10000,
   },
-  { src: "./forest/tree4.PNG", type: "upgrade", name: "tree4", unlockAt: 1000 },
-  { src: "./forest/tree3.PNG", type: "upgrade", name: "tree3", unlockAt: 100 },
-  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2", unlockAt: 20 },
-  { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1", unlockAt: 1 },
-
-  { src: "./forest/bear.PNG", type: "animal", name: "bear", unlockAt: 300000 },
-  { src: "./forest/deer.PNG", type: "animal", name: "deer", unlockAt: 100000 },
-
-  { src: "./forest/bushes.PNG", type: "background" },
   {
-    src: "./forest/berries.PNG",
+    src: "src/assets/forest/tree4.PNG",
+    type: "upgrade",
+    name: "tree4",
+    unlockAt: 1000,
+  },
+  {
+    src: "src/assets/forest/tree3.PNG",
+    type: "upgrade",
+    name: "tree3",
+    unlockAt: 100,
+  },
+  {
+    src: "src/assets/forest/tree2.PNG",
+    type: "upgrade",
+    name: "tree2",
+    unlockAt: 20,
+  },
+  {
+    src: "src/assets/forest/tree1.PNG",
+    type: "upgrade",
+    name: "tree1",
+    unlockAt: 1,
+  },
+
+  {
+    src: "src/assets/forest/bear.PNG",
+    type: "animal",
+    name: "bear",
+    unlockAt: 300000,
+  },
+  {
+    src: "src/assets/forest/deer.PNG",
+    type: "animal",
+    name: "deer",
+    unlockAt: 100000,
+  },
+
+  { src: "src/assets/forest/bushes.PNG", type: "background" },
+  {
+    src: "src/assets/forest/berries.PNG",
     type: "upgrade",
     name: "berries",
     unlockAt: 5000,
   },
-  { src: "./forest/grass.PNG", type: "background" },
+  { src: "src/assets/forest/grass.PNG", type: "background" },
 
-  { src: "./forest/bunny.PNG", type: "animal", name: "bunny", unlockAt: 60 },
-  { src: "./forest/slug.PNG", type: "animal", name: "slug", unlockAt: 500000 },
   {
-    src: "./forest/raccoon.PNG",
+    src: "src/assets/forest/bunny.PNG",
+    type: "animal",
+    name: "bunny",
+    unlockAt: 60,
+  },
+  {
+    src: "src/assets/forest/slug.PNG",
+    type: "animal",
+    name: "slug",
+    unlockAt: 500000,
+  },
+  {
+    src: "src/assets/forest/raccoon.PNG",
     type: "animal",
     name: "raccoon",
     unlockAt: 1500,
   },
 
   {
-    src: "./forest/pond.PNG",
+    src: "src/assets/forest/pond.PNG",
     type: "background",
     name: "pond",
   },
-  { src: "./forest/duck.PNG", type: "animal", name: "duck", unlockAt: 500 },
+  {
+    src: "src/assets/forest/duck.PNG",
+    type: "animal",
+    name: "duck",
+    unlockAt: 500,
+  },
 ];
 
 const heading = document.createElement("h1");
