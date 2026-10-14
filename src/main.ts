@@ -30,7 +30,7 @@ const dayLayers: ForestLayer[] = [
   { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2", unlockAt: 20 },
   { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1", unlockAt: 1 },
 
-  { src: "./forest/bear.PNG", type: "animal", name: "bear", unlockAt: 1000000 },
+  { src: "./forest/bear.PNG", type: "animal", name: "bear", unlockAt: 300000 },
   { src: "./forest/deer.PNG", type: "animal", name: "deer", unlockAt: 100000 },
 
   { src: "./forest/bushes.PNG", type: "background" },
@@ -43,7 +43,14 @@ const dayLayers: ForestLayer[] = [
   { src: "./forest/grass.PNG", type: "background" },
 
   { src: "./forest/bunny.PNG", type: "animal", name: "bunny", unlockAt: 60 },
-  { src: "./forest/slug.PNG", type: "animal", name: "slug", unlockAt: 100500 },
+  { src: "./forest/slug.PNG", type: "animal", name: "slug", unlockAt: 500000 },
+  {
+    src: "./forest/raccoon.PNG",
+    type: "animal",
+    name: "raccoon",
+    unlockAt: 1500,
+  },
+
   {
     src: "./forest/pond.PNG",
     type: "background",
@@ -73,7 +80,8 @@ const autoCounter = document.createElement("p");
 autoCounter.textContent = "Auto power: +0";
 
 const message = document.createElement("p");
-message.textContent = "Click to plant trees! Nature appreciates your efforts";
+message.textContent =
+  "Click to plant trees! Nature appreciates your efforts. There are six animals to discover!";
 
 //number of upgrade counter
 const upgradeCounter = document.createElement("h4");
