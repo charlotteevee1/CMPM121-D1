@@ -8,7 +8,15 @@ import "./styles.css";
 
 const app = document.querySelector<HTMLElement>("#app")!;
 
-const dayLayers = [
+type ForestLayer = {
+  src: string;
+  type: string;
+  name?: string;
+  unlockAt?: number;
+  element?: HTMLImageElement;
+};
+
+const dayLayers: ForestLayer[] = [
   { src: "./forest/daySky.PNG", type: "background" },
 
   {
@@ -65,7 +73,7 @@ const autoCounter = document.createElement("p");
 autoCounter.textContent = "Auto power: +0";
 
 const message = document.createElement("p");
-message.textContent = "Keep clicking! Nature appreciates your efforts";
+message.textContent = "Click to plant trees! Nature appreciates your efforts";
 
 //number of upgrade counter
 const upgradeCounter = document.createElement("h4");
@@ -117,6 +125,7 @@ let count = 0;
 let upgradeCount = 0;
 let autoAmount = 0;
 let manualAmount = 1;
+let highestCount = 0;
 
 // Timer
 function startTimer() {
@@ -134,12 +143,14 @@ function updateCounters() {
   upgradeCounter.textContent = `Total Upgrades Bought: ${upgradeCount}`;
   manualCounter.textContent = `Manual power: +${manualAmount}`;
   autoCounter.textContent = `Auto power: +${autoAmount}`;
+
+  if (highestCount < count) highestCount = count;
+
+  updateVisibility();
 }
 
-const forestLayers = [];
-
 function renderLayers(
-  layers: { src: string; type: string; name?: string; unlockAt?: number }[],
+  layers: ForestLayer[],
 ) {
   forestWindow.replaceChildren();
 
@@ -148,19 +159,29 @@ function renderLayers(
     layer.src = item.src;
     layer.classList.add("background");
 
+    forestWindow.append(layer);
+    item.element = layer;
+  }
+}
+
+function updateVisibility() {
+  for (const item of dayLayers) {
     let unlockAt = 0;
     if (item.unlockAt !== undefined) {
       unlockAt = item.unlockAt;
     }
-    if (count < unlockAt) {
-      layer.style.visibility = "hidden";
+    if (item.element) {
+      if (highestCount >= unlockAt) {
+        item.element.style.visibility = "visible";
+      } else {
+        item.element.style.visibility = "hidden";
+      }
     }
-    forestWindow.append(layer);
-    forestLayers.push(layer);
   }
 }
 
 renderLayers(dayLayers);
+updateVisibility();
 
 // Buying an upgrade will add to the current autoAmount
 function createUpgrade(
