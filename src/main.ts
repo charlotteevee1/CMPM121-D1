@@ -12,6 +12,16 @@ import tree4 from "./assets/forest/tree4.PNG?no-inline";
 import tree3 from "./assets/forest/tree3.PNG?no-inline";
 import tree2 from "./assets/forest/tree2.PNG?no-inline";
 import tree1 from "./assets/forest/tree1.PNG?no-inline";
+import bear from "./assets/forest/bear.PNG?no-inline";
+import deer from "./assets/forest/deer.PNG?no-inline";
+import bushes from "./assets/forest/bushes.PNG?no-inline";
+import berries from "./assets/forest/berries.PNG?no-inline";
+import grass from "./assets/forest/grass.PNG?no-inline";
+import bunny from "./assets/forest/bunny.PNG?no-inline";
+import slug from "./assets/forest/slug.PNG?no-inline";
+import raccoon from "./assets/forest/raccoon.PNG?no-inline";
+import pond from "./assets/forest/pond.PNG?no-inline";
+import duck from "./assets/forest/duck.PNG?no-inline";
 
 const app = document.querySelector<HTMLElement>("#app")!;
 
@@ -58,53 +68,53 @@ const dayLayers: ForestLayer[] = [
   },
 
   {
-    src: "src/assets/forest/bear.PNG",
+    src: bear,
     type: "animal",
     name: "bear",
     unlockAt: 300000,
   },
   {
-    src: "src/assets/forest/deer.PNG",
+    src: deer,
     type: "animal",
     name: "deer",
     unlockAt: 100000,
   },
 
-  { src: "src/assets/forest/bushes.PNG", type: "background" },
+  { src: bushes, type: "background" },
   {
-    src: "src/assets/forest/berries.PNG",
+    src: berries,
     type: "upgrade",
     name: "berries",
     unlockAt: 5000,
   },
-  { src: "src/assets/forest/grass.PNG", type: "background" },
+  { src: grass, type: "background" },
 
   {
-    src: "src/assets/forest/bunny.PNG",
+    src: bunny,
     type: "animal",
     name: "bunny",
     unlockAt: 60,
   },
   {
-    src: "src/assets/forest/slug.PNG",
+    src: slug,
     type: "animal",
     name: "slug",
     unlockAt: 500000,
   },
   {
-    src: "src/assets/forest/raccoon.PNG",
+    src: raccoon,
     type: "animal",
     name: "raccoon",
     unlockAt: 1500,
   },
 
   {
-    src: "src/assets/forest/pond.PNG",
+    src: pond,
     type: "background",
     name: "pond",
   },
   {
-    src: "src/assets/forest/duck.PNG",
+    src: duck,
     type: "animal",
     name: "duck",
     unlockAt: 500,
