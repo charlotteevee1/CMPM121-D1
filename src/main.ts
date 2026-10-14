@@ -318,18 +318,24 @@ const upgradeSections: UpgradeSection[] = [
     title: "-Manual Upgrades-",
     type: "manual",
     upgrades: [
-      { name: "+1 manual", amount: 1, cost: 10 },
-      { name: "+10 manual", amount: 10, cost: 50 },
-      { name: "+100 manual", amount: 100, cost: 100 },
+      { name: "Packets of seeds (+1)", amount: 1, cost: 10 },
+      { name: "Buckets of seeds (+10)", amount: 10, cost: 50 },
+      { name: "Wheelbarrows of seeds (+100)", amount: 100, cost: 100 },
+      {
+        name: "Swimming pools of seeds (+10000 manual)",
+        amount: 1000,
+        cost: 150,
+      },
     ],
   },
   {
     title: "-Auto Upgrades-",
     type: "auto",
     upgrades: [
-      { name: "+1 auto", amount: 1, cost: 100 },
-      { name: "+10 auto", amount: 10, cost: 200 },
-      { name: "+100 auto", amount: 100, cost: 300 },
+      { name: "Find volunteers (+1)", amount: 1, cost: 100 },
+      { name: "Teach a forestry class (+10)", amount: 10, cost: 200 },
+      { name: "Start a nonprofit (+100)", amount: 100, cost: 300 },
+      { name: "Expand protected area (+1000)", amount: 1000, cost: 400 },
     ],
   },
 ];
