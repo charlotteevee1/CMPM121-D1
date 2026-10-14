@@ -211,8 +211,8 @@ startTimer();
 function updateCounters() {
   counter.textContent = `Environment level: ${count}`;
   upgradeCounter.textContent = `Total Upgrades Bought: ${upgradeCount}`;
-  manualCounter.textContent = `Manual power: +${manualAmount}`;
-  autoCounter.textContent = `Auto power: +${autoAmount}`;
+  manualCounter.textContent = `Manual planting power: +${manualAmount}`;
+  autoCounter.textContent = `Auto planting power: +${autoAmount}`;
 
   if (highestCount < count) highestCount = count;
 
