@@ -322,7 +322,7 @@ const upgradeSections: UpgradeSection[] = [
       { name: "Buckets of seeds (+10 power)", amount: 10, cost: 50 },
       { name: "Wheelbarrows of seeds (+100 power)", amount: 100, cost: 100 },
       {
-        name: "Swimming pools of seeds (+10000 manual)",
+        name: "Swimming pools of seeds (+10000 power)",
         amount: 1000,
         cost: 150,
       },
