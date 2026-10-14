@@ -3,9 +3,15 @@
 // @deno-types="./asset-url.d.ts"
 
 // Creating visual elements
-//import tileUrl from "./assets/tile.svg?no-inline";
 import plant from "./assets/plant.PNG?no-inline";
 import "./styles.css";
+
+import daySky from "./assets/forest/daySky.PNG?no-inline";
+import tree5 from "./assets/forest/tree5.PNG?no-inline";
+import tree4 from "./assets/forest/tree4.PNG?no-inline";
+import tree3 from "./assets/forest/tree3.PNG?no-inline";
+import tree2 from "./assets/forest/tree2.PNG?no-inline";
+import tree1 from "./assets/forest/tree1.PNG?no-inline";
 
 const app = document.querySelector<HTMLElement>("#app")!;
 
@@ -18,34 +24,34 @@ type ForestLayer = {
 };
 
 const dayLayers: ForestLayer[] = [
-  { src: "src/assets/forest/daySky.PNG", type: "background" },
+  { src: daySky, type: "background" },
 
   {
-    src: "src/assets/forest/tree5.PNG",
+    src: tree5,
     type: "upgrade",
     name: "tree5",
     unlockAt: 10000,
   },
   {
-    src: "src/assets/forest/tree4.PNG",
+    src: tree4,
     type: "upgrade",
     name: "tree4",
     unlockAt: 1000,
   },
   {
-    src: "src/assets/forest/tree3.PNG",
+    src: tree3,
     type: "upgrade",
     name: "tree3",
     unlockAt: 100,
   },
   {
-    src: "src/assets/forest/tree2.PNG",
+    src: tree2,
     type: "upgrade",
     name: "tree2",
     unlockAt: 20,
   },
   {
-    src: "src/assets/forest/tree1.PNG",
+    src: tree1,
     type: "upgrade",
     name: "tree1",
     unlockAt: 1,
