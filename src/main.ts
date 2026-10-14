@@ -66,7 +66,7 @@ const mainButton = document.createElement("img");
 mainButton.style.cursor = "pointer";
 mainButton.id = "mainButton";
 mainButton.src = tileUrl;
-mainButton.alt = "A teal tile with a cream circle";
+mainButton.alt = "A small potted plant";
 mainButton.width = 96;
 mainButton.height = 96;
 
