@@ -27,7 +27,7 @@ const dayLayers: ForestLayer[] = [
   },
   { src: "./forest/tree4.PNG", type: "upgrade", name: "tree4", unlockAt: 1000 },
   { src: "./forest/tree3.PNG", type: "upgrade", name: "tree3", unlockAt: 100 },
-  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2", unlockAt: 10 },
+  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2", unlockAt: 20 },
   { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1", unlockAt: 1 },
 
   { src: "./forest/bear.PNG", type: "animal", name: "bear", unlockAt: 1000000 },
@@ -42,7 +42,7 @@ const dayLayers: ForestLayer[] = [
   },
   { src: "./forest/grass.PNG", type: "background" },
 
-  { src: "./forest/bunny.PNG", type: "animal", name: "bunny", unlockAt: 50 },
+  { src: "./forest/bunny.PNG", type: "animal", name: "bunny", unlockAt: 60 },
   { src: "./forest/slug.PNG", type: "animal", name: "slug", unlockAt: 100500 },
   {
     src: "./forest/pond.PNG",
@@ -147,6 +147,21 @@ function updateCounters() {
   if (highestCount < count) highestCount = count;
 
   updateVisibility();
+  updateBrightness();
+}
+
+function updateBrightness() {
+  for (const section of upgradeSections) {
+    for (const item of section.upgrades) {
+      if (item.element) {
+        if (count >= item.cost) {
+          item.element.style.filter = "brightness(100%)";
+        } else {
+          item.element.style.filter = "brightness(50%)";
+        }
+      }
+    }
+  }
 }
 
 function renderLayers(
@@ -183,55 +198,52 @@ function updateVisibility() {
 renderLayers(dayLayers);
 updateVisibility();
 
+type Upgrade = {
+  name: string;
+  amount: number;
+  cost: number;
+  element?: HTMLParagraphElement;
+};
+
+type UpgradeSection = {
+  title: string;
+  type: string;
+  upgrades: Upgrade[];
+};
+
 // Buying an upgrade will add to the current autoAmount
 function createUpgrade(
-  buttonText: string,
-  newAmount: number,
-  cost: number,
+  item: Upgrade,
   upgradeType: string,
 ) {
   const upgrade = document.createElement("p");
   upgrade.style.cursor = "pointer";
-  upgrade.textContent = `${buttonText} - $${cost}`;
+  upgrade.textContent = `${item.name} - $${item.cost}`;
+
+  item.element = upgrade;
   shop.append(upgrade);
 
-  // Make button glow when hovered
-  upgrade.addEventListener("mouseover", () => {
-    if (cost <= count) {
-      upgrade.style.filter = "brightness(150%)";
-    }
-  });
-
-  // Make button stop glowing when leaving
-  upgrade.addEventListener("mouseleave", () => {
-    upgrade.style.filter = "brightness(100%)";
-  });
-
   upgrade.addEventListener("click", () => {
-    if (cost <= count) {
-      count -= cost;
+    if (item.cost <= count) {
+      count -= item.cost;
       upgradeCount++;
 
-      if (upgradeType == "auto") autoAmount += newAmount;
+      if (upgradeType == "auto") autoAmount += item.amount;
       else if (upgradeType == "manual") {
-        manualAmount += newAmount;
+        manualAmount += item.amount;
       }
 
       //Doubling the price of upgrades
-      cost = cost * 2;
-      upgrade.textContent = `${buttonText} - $${cost}`;
+      item.cost = item.cost * 2;
+      upgrade.textContent = `${item.name} - $${item.cost}`;
 
       updateCounters();
-
-      console.log("Auto " + autoAmount + " Manual " + manualAmount);
-    } else {
-      console.log("Not enough cash!");
     }
   });
 }
 
 // Creates upgrade sections in the shop and fills them with upgrades
-const upgradeSections = [
+const upgradeSections: UpgradeSection[] = [
   {
     title: "-Manual Upgrades-",
     type: "manual",
@@ -250,11 +262,6 @@ const upgradeSections = [
       { name: "+100 auto", amount: 100, cost: 300 },
     ],
   },
-  {
-    title: "-Environment Upgrades-",
-    type: "environment",
-    upgrades: [],
-  },
 ];
 
 for (const section of upgradeSections) {
@@ -263,11 +270,6 @@ for (const section of upgradeSections) {
   shop.append(heading);
 
   for (const upgrade of section.upgrades) {
-    createUpgrade(
-      upgrade.name,
-      upgrade.amount,
-      upgrade.cost,
-      section.type,
-    );
+    createUpgrade(upgrade, section.type);
   }
 }
