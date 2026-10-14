@@ -3,7 +3,8 @@
 // @deno-types="./asset-url.d.ts"
 
 // Creating visual elements
-import tileUrl from "./assets/tile.svg?no-inline";
+// import tileUrl from "./assets/tile.svg?no-inline";
+import plant from "./assets/plant.PNG?no-inline";
 import "./styles.css";
 
 const app = document.querySelector<HTMLElement>("#app")!;
@@ -65,7 +66,7 @@ heading.textContent = "Plant Trees";
 const mainButton = document.createElement("img");
 mainButton.style.cursor = "pointer";
 mainButton.id = "mainButton";
-mainButton.src = tileUrl;
+mainButton.src = plant;
 mainButton.alt = "A small potted plant";
 mainButton.width = 96;
 mainButton.height = 96;
