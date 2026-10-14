@@ -273,3 +273,5 @@ for (const section of upgradeSections) {
     createUpgrade(upgrade, section.type);
   }
 }
+
+updateBrightness();
