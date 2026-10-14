@@ -4,10 +4,58 @@
 
 // Creating visual elements
 import tileUrl from "./assets/tile.svg?no-inline";
-import leafeonUrl from "./assets/leafeon.jpg?no-inline";
 import "./styles.css";
 
 const app = document.querySelector<HTMLElement>("#app")!;
+
+const dayLayers = [
+  { src: "./forest/daySky.PNG", type: "background" },
+
+  { src: "./forest/tree5.PNG", type: "upgrade", name: "tree5" },
+  { src: "./forest/tree4.PNG", type: "upgrade", name: "tree4" },
+  { src: "./forest/tree3.PNG", type: "upgrade", name: "tree3" },
+  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2" },
+  { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1" },
+
+  { src: "./forest/bear.PNG", type: "animal", name: "bear" },
+  { src: "./forest/deer.PNG", type: "animal", name: "deer" },
+
+  { src: "./forest/bushes.PNG", type: "background" },
+  { src: "./forest/berries.PNG", type: "upgrade", name: "berries" },
+  { src: "./forest/grass.PNG", type: "background" },
+
+  { src: "./forest/bunny.PNG", type: "animal", name: "bunny" },
+  { src: "./forest/slug.PNG", type: "animal", name: "slug" },
+  { src: "./forest/pond.PNG", type: "upgrade", name: "pond" },
+  { src: "./forest/duck.PNG", type: "animal", name: "duck" },
+
+  { src: "./forest/bell.PNG", type: "upgrade", name: "bell" },
+];
+
+const nightLayers = [
+  { src: "./forest/nightSky.PNG", type: "background" },
+  { src: "./forest/stars.PNG", type: "background" },
+
+  { src: "./forest/tree5.PNG", type: "upgrade", name: "tree5" },
+  { src: "./forest/tree4.PNG", type: "upgrade", name: "tree4" },
+  { src: "./forest/tree3.PNG", type: "upgrade", name: "tree3" },
+  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2" },
+  { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1" },
+
+  { src: "./forest/wolf.PNG", type: "animal", name: "wolf" },
+  { src: "./forest/fox.PNG", type: "animal", name: "fox" },
+
+  { src: "./forest/bushes.PNG", type: "background" },
+  { src: "./forest/berries.PNG", type: "upgrade", name: "berries" },
+  { src: "./forest/grass.PNG", type: "background" },
+
+  { src: "./forest/skunk.PNG", type: "animal", name: "skunk" },
+  { src: "./forest/raccoon.PNG", type: "animal", name: "raccoon" },
+  { src: "./forest/pond.PNG", type: "upgrade", name: "pond" },
+
+  { src: "./forest/bell.PNG", type: "upgrade", name: "bell" },
+  { src: "./forest/mystic.PNG", type: "animal", name: "mystic" },
+];
 
 const heading = document.createElement("h1");
 heading.textContent = "Plant Trees";
@@ -19,12 +67,6 @@ mainButton.src = tileUrl;
 mainButton.alt = "A teal tile with a cream circle";
 mainButton.width = 96;
 mainButton.height = 96;
-
-// Placeholder image
-const leafeon = document.createElement("img");
-leafeon.id = "leafeon";
-leafeon.src = leafeonUrl;
-leafeon.alt = "A cute little leafeon!";
 
 const counter = document.createElement("h2");
 counter.textContent = "Trees planted: 0";
@@ -55,10 +97,24 @@ forestWindow.id = "forestWindow";
 const clickWindow = document.createElement("div");
 clickWindow.id = "clickWindow";
 
+nightLayers.forEach((item) => {
+  const layer = document.createElement("img");
+  layer.src = item.src;
+  layer.classList.add("background");
+  forestWindow.append(layer);
+});
+
+dayLayers.forEach((item) => {
+  const layer = document.createElement("img");
+  layer.src = item.src;
+  layer.classList.add("background");
+  forestWindow.append(layer);
+});
+
 // Make sure all visual elements are listed into here
 app.append(clickWindow, forestWindow, shop);
 shop.append(shopText, upgradeCounter);
-forestWindow.append(leafeon);
+forestWindow.append();
 clickWindow.append(
   heading,
   mainButton,
@@ -111,7 +167,7 @@ function createUpgrade(
   buttonText: string,
   newAmount: number,
   cost: number,
-  isAutoUpgrade: boolean,
+  upgradeType: string,
 ) {
   const upgrade = document.createElement("p");
   upgrade.style.cursor = "pointer";
@@ -135,7 +191,7 @@ function createUpgrade(
       count -= cost;
       upgradeCount++;
 
-      if (isAutoUpgrade == true) autoAmount += newAmount;
+      if (upgradeType == "auto") autoAmount += newAmount;
       else manualAmount += newAmount;
 
       //Doubling the price of upgrades
@@ -155,28 +211,44 @@ function createUpgrade(
   });
 }
 
-const autoUpgradeText = document.createElement("h2");
-autoUpgradeText.textContent = "-Auto Upgrades-";
-shop.append(autoUpgradeText);
+// Creates upgrade sections in the shop and fills them with upgrades
+const upgradeSections = [
+  {
+    title: "-Manual Upgrades-",
+    type: "manual",
+    upgrades: [
+      { name: "+1 manual", amount: 1, cost: 10 },
+      { name: "+10 manual", amount: 10, cost: 50 },
+      { name: "+100 manual", amount: 100, cost: 100 },
+    ],
+  },
+  {
+    title: "-Auto Upgrades-",
+    type: "auto",
+    upgrades: [
+      { name: "+1 auto", amount: 1, cost: 100 },
+      { name: "+10 auto", amount: 2, cost: 200 },
+      { name: "+100 auto", amount: 10, cost: 300 },
+    ],
+  },
+  {
+    title: "-Environment Upgrades-",
+    type: "environment",
+    upgrades: [],
+  },
+];
 
-createUpgrade("+1 auto", 1, 10, true);
+for (const section of upgradeSections) {
+  const heading = document.createElement("h2");
+  heading.textContent = section.title;
+  shop.append(heading);
 
-createUpgrade("+2 auto", 2, 20, true);
-
-createUpgrade("+10 auto", 10, 100, true);
-
-const manualUpgradeText = document.createElement("h2");
-manualUpgradeText.textContent = "-Manual Upgrades-";
-shop.append(manualUpgradeText);
-
-createUpgrade("+5 manual", 5, 30, false);
-
-createUpgrade("+100 manual", 100, 50, false);
-
-createUpgrade("+200 manual", 200, 80, false);
-
-createUpgrade("+200 manual", 200, 80, false);
-
-const environmentUpgradeText = document.createElement("h2");
-environmentUpgradeText.textContent = "-Environment Upgrades-";
-shop.append(environmentUpgradeText);
+  for (const upgrade of section.upgrades) {
+    createUpgrade(
+      upgrade.name,
+      upgrade.amount,
+      upgrade.cost,
+      section.type,
+    );
+  }
+}
