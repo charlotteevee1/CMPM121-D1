@@ -3,7 +3,7 @@
 // @deno-types="./asset-url.d.ts"
 
 // Creating visual elements
-import tileUrl from "./assets/tile.png?no-inline";
+import tileUrl from "./assets/tile.svg?no-inline";
 import "./styles.css";
 
 const app = document.querySelector<HTMLElement>("#app")!;
