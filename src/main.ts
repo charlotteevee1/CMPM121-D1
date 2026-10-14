@@ -17,7 +17,7 @@ type ForestLayer = {
 };
 
 const dayLayers: ForestLayer[] = [
-  { src: "/forest/daySky.PNG", type: "background" },
+  { src: "./forest/daySky.PNG", type: "background" },
 
   {
     src: "./forest/tree5.PNG",
