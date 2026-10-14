@@ -47,7 +47,7 @@ div {
 
   min-width: 250px;
   max-width: 900px;
-  overflow-y: auto;
+  overflow-y: hidden;
   max-height: 80vh;
 }
 
@@ -78,7 +78,6 @@ div {
 
   height: 80vh;
   aspect-ratio: 1.9/3;
-  overflow-y: hidden;
 }
 
 .background {
@@ -93,6 +92,7 @@ div {
 #shop {
   background-color: #6d754e;
   border-color: #78834d;
+  overflow-y: auto;
 }
 
 #shop p {
