@@ -103,7 +103,7 @@ div {
   border-width: 5px;
   border-color: rgb(157, 122, 122);
   background-color: #9a7f69;
-  font-size: clamp(8px, 6cqw, 30px);
+  font-size: clamp(8px, 6cqw, 20px);
 }
 
 #upgradeCounter {
