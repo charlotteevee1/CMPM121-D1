@@ -11,50 +11,37 @@ const app = document.querySelector<HTMLElement>("#app")!;
 const dayLayers = [
   { src: "./forest/daySky.PNG", type: "background" },
 
-  { src: "./forest/tree5.PNG", type: "upgrade", name: "tree5" },
-  { src: "./forest/tree4.PNG", type: "upgrade", name: "tree4" },
-  { src: "./forest/tree3.PNG", type: "upgrade", name: "tree3" },
-  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2" },
-  { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1" },
+  {
+    src: "./forest/tree5.PNG",
+    type: "upgrade",
+    name: "tree5",
+    unlockAt: 10000,
+  },
+  { src: "./forest/tree4.PNG", type: "upgrade", name: "tree4", unlockAt: 1000 },
+  { src: "./forest/tree3.PNG", type: "upgrade", name: "tree3", unlockAt: 100 },
+  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2", unlockAt: 10 },
+  { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1", unlockAt: 1 },
 
-  { src: "./forest/bear.PNG", type: "animal", name: "bear" },
-  { src: "./forest/deer.PNG", type: "animal", name: "deer" },
-
-  { src: "./forest/bushes.PNG", type: "background" },
-  { src: "./forest/berries.PNG", type: "upgrade", name: "berries" },
-  { src: "./forest/grass.PNG", type: "background" },
-
-  { src: "./forest/bunny.PNG", type: "animal", name: "bunny" },
-  { src: "./forest/slug.PNG", type: "animal", name: "slug" },
-  { src: "./forest/pond.PNG", type: "upgrade", name: "pond" },
-  { src: "./forest/duck.PNG", type: "animal", name: "duck" },
-
-  { src: "./forest/bell.PNG", type: "upgrade", name: "bell" },
-];
-
-const nightLayers = [
-  { src: "./forest/nightSky.PNG", type: "background" },
-  { src: "./forest/stars.PNG", type: "background" },
-
-  { src: "./forest/tree5.PNG", type: "upgrade", name: "tree5" },
-  { src: "./forest/tree4.PNG", type: "upgrade", name: "tree4" },
-  { src: "./forest/tree3.PNG", type: "upgrade", name: "tree3" },
-  { src: "./forest/tree2.PNG", type: "upgrade", name: "tree2" },
-  { src: "./forest/tree1.PNG", type: "upgrade", name: "tree1" },
-
-  { src: "./forest/wolf.PNG", type: "animal", name: "wolf" },
-  { src: "./forest/fox.PNG", type: "animal", name: "fox" },
+  { src: "./forest/bear.PNG", type: "animal", name: "bear", unlockAt: 1000000 },
+  { src: "./forest/deer.PNG", type: "animal", name: "deer", unlockAt: 100000 },
 
   { src: "./forest/bushes.PNG", type: "background" },
-  { src: "./forest/berries.PNG", type: "upgrade", name: "berries" },
+  {
+    src: "./forest/berries.PNG",
+    type: "upgrade",
+    name: "berries",
+    unlockAt: 5000,
+  },
   { src: "./forest/grass.PNG", type: "background" },
 
-  { src: "./forest/skunk.PNG", type: "animal", name: "skunk" },
-  { src: "./forest/raccoon.PNG", type: "animal", name: "raccoon" },
-  { src: "./forest/pond.PNG", type: "upgrade", name: "pond" },
-
-  { src: "./forest/bell.PNG", type: "upgrade", name: "bell" },
-  { src: "./forest/mystic.PNG", type: "animal", name: "mystic" },
+  { src: "./forest/bunny.PNG", type: "animal", name: "bunny", unlockAt: 50 },
+  { src: "./forest/slug.PNG", type: "animal", name: "slug", unlockAt: 100500 },
+  {
+    src: "./forest/pond.PNG",
+    type: "background",
+    name: "pond",
+  },
+  { src: "./forest/duck.PNG", type: "animal", name: "duck", unlockAt: 500 },
 ];
 
 const heading = document.createElement("h1");
@@ -69,7 +56,7 @@ mainButton.width = 96;
 mainButton.height = 96;
 
 const counter = document.createElement("h2");
-counter.textContent = "Trees planted: 0";
+counter.textContent = "Environment level: 0";
 
 const manualCounter = document.createElement("p");
 manualCounter.textContent = "Manual power: +1";
@@ -96,20 +83,6 @@ forestWindow.id = "forestWindow";
 
 const clickWindow = document.createElement("div");
 clickWindow.id = "clickWindow";
-
-nightLayers.forEach((item) => {
-  const layer = document.createElement("img");
-  layer.src = item.src;
-  layer.classList.add("background");
-  forestWindow.append(layer);
-});
-
-dayLayers.forEach((item) => {
-  const layer = document.createElement("img");
-  layer.src = item.src;
-  layer.classList.add("background");
-  forestWindow.append(layer);
-});
 
 // Make sure all visual elements are listed into here
 app.append(clickWindow, forestWindow, shop);
@@ -157,11 +130,37 @@ startTimer();
 
 // Functions
 function updateCounters() {
-  counter.textContent = `Trees planted: ${count}`;
+  counter.textContent = `Environment level: ${count}`;
   upgradeCounter.textContent = `Total Upgrades Bought: ${upgradeCount}`;
   manualCounter.textContent = `Manual power: +${manualAmount}`;
   autoCounter.textContent = `Auto power: +${autoAmount}`;
 }
+
+const forestLayers = [];
+
+function renderLayers(
+  layers: { src: string; type: string; name?: string; unlockAt?: number }[],
+) {
+  forestWindow.replaceChildren();
+
+  for (const item of layers) {
+    const layer = document.createElement("img");
+    layer.src = item.src;
+    layer.classList.add("background");
+
+    let unlockAt = 0;
+    if (item.unlockAt !== undefined) {
+      unlockAt = item.unlockAt;
+    }
+    if (count < unlockAt) {
+      layer.style.visibility = "hidden";
+    }
+    forestWindow.append(layer);
+    forestLayers.push(layer);
+  }
+}
+
+renderLayers(dayLayers);
 
 // Buying an upgrade will add to the current autoAmount
 function createUpgrade(
