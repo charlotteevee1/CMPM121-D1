@@ -109,3 +109,7 @@ div {
 #upgradeCounter {
   color: #434832;
 }
+
+#mainButton:active {
+  transform: scale(0.92);
+}
