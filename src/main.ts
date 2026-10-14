@@ -72,10 +72,10 @@ const counter = document.createElement("h2");
 counter.textContent = "Trees planted: 0";
 
 const manualCounter = document.createElement("p");
-manualCounter.textContent = "Manual counter: 1";
+manualCounter.textContent = "Manual power: +1";
 
 const autoCounter = document.createElement("p");
-autoCounter.textContent = "Auto counter: 0";
+autoCounter.textContent = "Auto power: +0";
 
 const message = document.createElement("p");
 message.textContent = "Keep clicking! Nature appreciates your efforts";
@@ -114,7 +114,6 @@ dayLayers.forEach((item) => {
 // Make sure all visual elements are listed into here
 app.append(clickWindow, forestWindow, shop);
 shop.append(shopText, upgradeCounter);
-forestWindow.append();
 clickWindow.append(
   heading,
   mainButton,
@@ -127,7 +126,7 @@ clickWindow.append(
 // Event Listeners
 mainButton.addEventListener("click", () => {
   count += manualAmount;
-  counter.textContent = `Trees planted: ${count.toString()}`;
+  updateCounters();
 });
 
 // Make button glow when hovered
@@ -149,17 +148,19 @@ let manualAmount = 1;
 // Timer
 function startTimer() {
   setInterval(() => {
-    count = increase(count, autoAmount);
+    count += autoAmount;
+    updateCounters();
   }, 1000);
 }
 
 startTimer();
 
 // Functions
-function increase(count: number, autoAmount: number) {
-  count += autoAmount;
-  counter.textContent = `Trees planted: ${count.toString()}`;
-  return count;
+function updateCounters() {
+  counter.textContent = `Trees planted: ${count}`;
+  upgradeCounter.textContent = `Total Upgrades Bought: ${upgradeCount}`;
+  manualCounter.textContent = `Manual power: +${manualAmount}`;
+  autoCounter.textContent = `Auto power: +${autoAmount}`;
 }
 
 // Buying an upgrade will add to the current autoAmount
@@ -192,17 +193,15 @@ function createUpgrade(
       upgradeCount++;
 
       if (upgradeType == "auto") autoAmount += newAmount;
-      else manualAmount += newAmount;
+      else if (upgradeType == "manual") {
+        manualAmount += newAmount;
+      }
 
       //Doubling the price of upgrades
       cost = cost * 2;
       upgrade.textContent = `${buttonText} - $${cost}`;
 
-      counter.textContent = `Trees planted: ${count.toString()}`;
-      upgradeCounter.textContent =
-        `Total Upgrades Bought: ${upgradeCount.toString()}`;
-      manualCounter.textContent = `Manual counter: ${manualAmount.toString()}`;
-      autoCounter.textContent = `Auto counter: ${autoAmount.toString()}`;
+      updateCounters();
 
       console.log("Auto " + autoAmount + " Manual " + manualAmount);
     } else {
@@ -227,8 +226,8 @@ const upgradeSections = [
     type: "auto",
     upgrades: [
       { name: "+1 auto", amount: 1, cost: 100 },
-      { name: "+10 auto", amount: 2, cost: 200 },
-      { name: "+100 auto", amount: 10, cost: 300 },
+      { name: "+10 auto", amount: 10, cost: 200 },
+      { name: "+100 auto", amount: 100, cost: 300 },
     ],
   },
   {
