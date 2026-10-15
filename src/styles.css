@@ -40,7 +40,7 @@ h3 {
 
 div {
   text-align: center;
-  border-style: groove;
+  border-style: solid;
   border-radius: 12px;
   border-width: 5px;
   padding: 20px;
@@ -60,7 +60,7 @@ div {
 
 #clickWindow {
   background-color: #f0e4c0;
-  border-color: #b5a67b;
+  border-color: #a1936d;
 }
 
 #clickWindow p,
@@ -74,7 +74,7 @@ div {
 #forestWindow {
   position: relative;
   background-color: #efede4;
-  border-color: #787c69;
+  border-color: #554236;
 
   height: 80vh;
   aspect-ratio: 1.9/3;
@@ -91,17 +91,17 @@ div {
 
 #shop {
   background-color: #6d754e;
-  border-color: #78834d;
+  border-color: #555b37;
   overflow-y: auto;
 }
 
 #shop p {
   color: #E5D1B6;
   padding: 12px;
-  border-style: groove;
+  border-style: solid;
   border-radius: 12px;
-  border-width: 5px;
-  border-color: rgb(157, 122, 122);
+  border-width: 3px;
+  border-color: rgb(102, 85, 85);
   background-color: #9a7f69;
   font-size: clamp(8px, 6cqw, 20px);
 }
