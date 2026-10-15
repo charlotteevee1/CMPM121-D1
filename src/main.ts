@@ -350,6 +350,7 @@ const upgradeSections: UpgradeSection[] = [
   },
 ];
 
+// Loop to run each upgrade through createUpgrade()
 for (const section of upgradeSections) {
   const heading = document.createElement("h2");
   heading.textContent = section.title;
