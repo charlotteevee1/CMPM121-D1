@@ -198,14 +198,24 @@ let manualAmount = 1;
 let highestCount = 0;
 
 // Timer
-function startTimer() {
-  setInterval(() => {
-    count += autoAmount;
-    updateCounters();
-  }, 1000);
+let lastTime: number | null = null;
+
+function animate(currentTime: number) {
+  if (lastTime != null) {
+    const deltaTime = currentTime - lastTime;
+
+    if (autoAmount > 0) {
+      const increment = (autoAmount * deltaTime) / 1000;
+      count += increment;
+      updateCounters();
+    }
+  }
+
+  lastTime = currentTime;
+  requestAnimationFrame(animate);
 }
 
-startTimer();
+requestAnimationFrame(animate);
 
 // Functions
 function updateCounters() {
