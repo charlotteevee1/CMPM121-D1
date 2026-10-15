@@ -219,7 +219,7 @@ requestAnimationFrame(animate);
 
 // Functions
 function updateCounters() {
-  counter.textContent = `Environment level: ${count}`;
+  counter.textContent = `Environment level: ${Math.floor(count)}`;
   upgradeCounter.textContent = `Total Upgrades Bought: ${upgradeCount}`;
   manualCounter.textContent = `Manual planting power: +${manualAmount}`;
   autoCounter.textContent = `Auto planting power: +${autoAmount}`;
