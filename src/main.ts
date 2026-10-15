@@ -133,7 +133,7 @@ mainButton.width = 96;
 mainButton.height = 96;
 
 const counter = document.createElement("h2");
-counter.textContent = "Environment level: 0";
+counter.textContent = "Environment Level: 0";
 
 const manualCounter = document.createElement("p");
 manualCounter.textContent = "Manual power: +1";
@@ -219,7 +219,7 @@ requestAnimationFrame(animate);
 
 // Functions
 function updateCounters() {
-  counter.textContent = `Environment level: ${Math.floor(count)}`;
+  counter.textContent = `Environment Level: ${Math.floor(count)}`;
   upgradeCounter.textContent = `Total Upgrades Bought: ${upgradeCount}`;
   manualCounter.textContent = `Manual planting power: +${manualAmount}`;
   autoCounter.textContent = `Auto planting power: +${autoAmount}`;
