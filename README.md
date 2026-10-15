@@ -41,7 +41,11 @@ https://charlotteevee1.github.io/CMPM121-D1/
 
 - Creating new upgrades was originally handled by calling a function for each upgrade, leading to a long list of function calls. This was revised so new upgrades are handled through an array and object data structure to improve readability and organization. A loop automatically calls createUpgrade() for each upgrade in the data structure and appends the headings for manual and automatic upgrades into the shop div so the upgrades and headings are ordered correctly on the display. This makes the creation of future category headings and upgrades simpler. The createUpgrade() function was reworked to work with passed upgrades directly instead of passing each upgrade's properties.
   - https://github.com/charlotteevee1/CMPM121-D1/commit/685c1cf9c5ceac78bdac03515ce47cf16a0d8bed
-    - https://github.com/charlotteevee1/CMPM121-D1/commit/add3f9c901a81ff73807987c5713da1544aa6ed4
+  - https://github.com/charlotteevee1/CMPM121-D1/commit/add3f9c901a81ff73807987c5713da1544aa6ed4
+- Instead of a loop to render each forest scene, a function was created for this purpose. This leaves room for different scenes in the future, such as a day/night cycle or alternative locations to be added more easily. The function was later split into two separate functions, one to create the layer images in the beginning, and one to toggle visibility
+  - https://github.com/charlotteevee1/CMPM121-D1/commit/af5d68a46cce9888103a07906d4b28f2792d9725
+  - https://github.com/charlotteevee1/CMPM121-D1/commit/8f2aa9f41ec8842bbb2d46093ab84621685056f1
+
 - Updating counters was originally done through multiple single lines instead of a centralized function. This was revised to
   - https://github.com/charlotteevee1/CMPM121-D1/commit/8450640456869836d503e6227a70d30eeca775fd
 
