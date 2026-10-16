@@ -46,19 +46,19 @@ const dayLayers: ForestLayer[] = [
     src: tree4,
     type: "upgrade",
     name: "tree4",
-    unlockAt: 1000,
+    unlockAt: 4200,
   },
   {
     src: tree3,
     type: "upgrade",
     name: "tree3",
-    unlockAt: 100,
+    unlockAt: 1600,
   },
   {
     src: tree2,
     type: "upgrade",
     name: "tree2",
-    unlockAt: 20,
+    unlockAt: 110,
   },
   {
     src: tree1,
@@ -71,13 +71,13 @@ const dayLayers: ForestLayer[] = [
     src: bear,
     type: "animal",
     name: "bear",
-    unlockAt: 300000,
+    unlockAt: 100000,
   },
   {
     src: deer,
     type: "animal",
     name: "deer",
-    unlockAt: 100000,
+    unlockAt: 17000,
   },
 
   { src: bushes, type: "background" },
@@ -85,7 +85,7 @@ const dayLayers: ForestLayer[] = [
     src: berries,
     type: "upgrade",
     name: "berries",
-    unlockAt: 5000,
+    unlockAt: 27000,
   },
   { src: grass, type: "background" },
 
@@ -93,36 +93,37 @@ const dayLayers: ForestLayer[] = [
     src: bunny,
     type: "animal",
     name: "bunny",
-    unlockAt: 60,
+    unlockAt: 370,
   },
   {
     src: slug,
     type: "animal",
     name: "slug",
-    unlockAt: 500000,
+    unlockAt: 1000000,
   },
   {
     src: raccoon,
     type: "animal",
     name: "raccoon",
-    unlockAt: 1500,
+    unlockAt: 7000,
   },
 
   {
     src: pond,
-    type: "background",
+    type: "upgrade",
     name: "pond",
+    unlockAt: 950,
   },
   {
     src: duck,
     type: "animal",
     name: "duck",
-    unlockAt: 500,
+    unlockAt: 3450,
   },
 ];
 
 const heading = document.createElement("h1");
-heading.textContent = "Plant Trees";
+heading.textContent = "Conservation Clicker";
 
 const mainButton = document.createElement("img");
 mainButton.style.cursor = "pointer";
@@ -177,6 +178,7 @@ clickWindow.append(
 // Event Listeners
 mainButton.addEventListener("click", () => {
   count += manualAmount;
+  overallCount += manualAmount;
   updateCounters();
 });
 
@@ -195,7 +197,7 @@ let count = 0;
 let upgradeCount = 0;
 let autoAmount = 0;
 let manualAmount = 1;
-let highestCount = 0;
+let overallCount = 0;
 
 // Timer
 let lastTime: number | null = null;
@@ -207,6 +209,7 @@ function animate(currentTime: number) {
     if (autoAmount > 0) {
       const increment = (autoAmount * deltaTime) / 1000;
       count += increment;
+      overallCount += increment;
       updateCounters();
     }
   }
@@ -223,8 +226,6 @@ function updateCounters() {
   upgradeCounter.textContent = `Total Upgrades Bought: ${upgradeCount}`;
   manualCounter.textContent = `Manual planting power: +${manualAmount}`;
   autoCounter.textContent = `Auto planting power: +${autoAmount}`;
-
-  if (highestCount < count) highestCount = count;
 
   updateVisibility();
   updateBrightness();
@@ -266,7 +267,7 @@ function updateVisibility() {
       unlockAt = item.unlockAt;
     }
     if (item.element) {
-      if (highestCount >= unlockAt) {
+      if (overallCount >= unlockAt) {
         item.element.style.visibility = "visible";
       } else {
         item.element.style.visibility = "hidden";
@@ -298,7 +299,7 @@ function createUpgrade(
 ) {
   const upgrade = document.createElement("p");
   upgrade.style.cursor = "pointer";
-  upgrade.textContent = `${item.name} - $${item.cost}`;
+  upgrade.textContent = `${item.name} - ${item.cost}`;
 
   item.element = upgrade;
   shop.append(upgrade);
@@ -315,7 +316,7 @@ function createUpgrade(
 
       //Doubling the price of upgrades
       item.cost = item.cost * 2;
-      upgrade.textContent = `${item.name} - $${item.cost}`;
+      upgrade.textContent = `${item.name} - ${item.cost}`;
 
       updateCounters();
     }
@@ -329,12 +330,12 @@ const upgradeSections: UpgradeSection[] = [
     type: "manual",
     upgrades: [
       { name: "Packets of seeds (+1 power)", amount: 1, cost: 10 },
-      { name: "Buckets of seeds (+10 power)", amount: 10, cost: 50 },
-      { name: "Wheelbarrows of seeds (+100 power)", amount: 100, cost: 100 },
+      { name: "Buckets of seeds (+2 power)", amount: 2, cost: 500 },
+      { name: "Wheelbarrows of seeds (+5 power)", amount: 5, cost: 1000 },
       {
-        name: "Swimming pools of seeds (+10000 power)",
-        amount: 1000,
-        cost: 150,
+        name: "Swimming pools of seeds (+300 power)",
+        amount: 300,
+        cost: 10000,
       },
     ],
   },
@@ -342,10 +343,14 @@ const upgradeSections: UpgradeSection[] = [
     title: "-Auto Upgrades-",
     type: "auto",
     upgrades: [
-      { name: "Find volunteers (+1 power)", amount: 1, cost: 100 },
-      { name: "Teach a forestry class (+10 power)", amount: 10, cost: 200 },
-      { name: "Start a nonprofit (+100 power)", amount: 100, cost: 300 },
-      { name: "Expand protected area (+1000 power)", amount: 1000, cost: 400 },
+      { name: "Find volunteers (+5 power)", amount: 5, cost: 50 },
+      { name: "Teach a forestry class (+10 power)", amount: 10, cost: 1000 },
+      { name: "Start a nonprofit (+500 power)", amount: 500, cost: 15000 },
+      {
+        name: "Expand protected area (+1000 power)",
+        amount: 1000,
+        cost: 100000,
+      },
     ],
   },
 ];
