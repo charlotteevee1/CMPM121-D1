@@ -144,7 +144,7 @@ autoCounter.textContent = "Auto power: +0";
 
 const message = document.createElement("p");
 message.textContent =
-  "Click to plant trees! Nature appreciates your efforts. There are six animals to discover!";
+  "Click to grow the forest! Nature appreciates your efforts. There are six animals to discover!";
 
 //number of upgrade counter
 const upgradeCounter = document.createElement("h4");
